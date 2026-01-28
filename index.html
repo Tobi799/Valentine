@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine 💘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ffdee9, #ffc3a0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            max-width: 90%;
+            z-index: 2;
+        }
+
+        .question {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            min-height: 70px;
+        }
+
+        .buttons {
+            position: relative;
+            height: 120px;
+        }
+
+        button {
+            padding: 14px 32px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .yes {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        .yes:hover {
+            transform: scale(1.1);
+        }
+
+        .no {
+            background: #ddd;
+            position: absolute;
+            right: 0;
+        }
+
+        /* 🎈 Balloons */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            animation: float 12s linear infinite;
+            opacity: 0.85;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 60px;
+            background: #555;
+            left: 50%;
+            top: 80px;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-130vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🎈 Balloons -->
+    <div class="balloon" style="left:10%; background:#ff4d6d;"></div>
+    <div class="balloon" style="left:30%; background:#ff758f; animation-duration:10s;"></div>
+    <div class="balloon" style="left:50%; background:#ff1e56; animation-duration:14s;"></div>
+    <div class="balloon" style="left:70%; background:#ff6f91; animation-duration:11s;"></div>
+    <div class="balloon" style="left:90%; background:#ff0000; animation-duration:13s;"></div>
+
+    <div class="container">
+        <div class="question" id="typing"></div>
+
+        <div class="buttons">
+            <button class="yes" onclick="yesClicked()">YES 😍❤️</button>
+            <button class="no" id="noBtn">NO 🙃</button>
+        </div>
+    </div>
+
+    <script>
+        // ⌨️ Typing effect
+        const text = "Nike, will you be my Valentine? 😍❤️";
+        let index = 0;
+        const speed = 80;
+        const typingDiv = document.getElementById("typing");
+
+        function typeText() {
+            if (index < text.length) {
+                typingDiv.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeText, speed);
+            }
+        }
+        typeText();
+
+        // 🏃 NO button runs away
+        const noBtn = document.getElementById("noBtn");
+
+        noBtn.addEventListener("mouseover", () => {
+            const x = Math.random() * 70;
+            const y = Math.random() * 70;
+            noBtn.style.left = x + "%";
+            noBtn.style.top = y + "%";
+        });
+
+        // 💖 YES clicked
+        function yesClicked() {
+            document.body.innerHTML = `
+                <div style="
+                    height:100vh;
+                    background:linear-gradient(135deg,#ff758f,#ff4d6d);
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    color:white;
+                    text-align:center;
+                    padding:30px;
+                    font-size:1.8rem;
+                ">
+                    <div>
+                        Hahaha thanks for choosing me as your Valentine 💖<br><br>
+                        I hope this won't be the only Yes 🙂<br><br>
+                        Also I am going to wait for as long as I can<br>
+                        as long as I know it's with you ❤️
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
